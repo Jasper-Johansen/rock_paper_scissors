@@ -4,7 +4,6 @@ let computerScore=0;
 let round = 1;
 
 function playGame(round){
-    
     function getComputerChoice(){
         let number = Math.floor(Math.random()*3)+1;
         let computerChoice;
@@ -29,36 +28,44 @@ function playGame(round){
         return humanChoice;
     }
     
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-
     function playRound(humanChoice,computerChoice){
         if (humanChoice===computerChoice){
-            console.log("It's a tie!");
+            return "It's a tie!";
         }
         else{
             if (humanChoice==="rock" && computerChoice==="scissors" || humanChoice==="scissors" && computerChoice==="paper" || humanChoice==="paper" && computerChoice==="rock"){
                 humanScore++;
-                console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+                return `You win! ${humanChoice} beats ${computerChoice}`;
             }
             else{
                 computerScore++;
-                console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+                return `You lose! ${computerChoice} beats ${humanChoice}`;
             }
         }
-        return 0;
     }
+
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice(); 
 
     if (round<=5) {
-        console.log("Round: " + round);
-        getComputerChoice();
-        getHumanChoice();
-        playRound(humanSelection,computerSelection);
+        console.log("Round: " + round);   
+        console.log(playRound(humanSelection,computerSelection));
         console.log("Your score: "+ humanScore);
         console.log("Computer's score: " + computerScore);
+
         playGame(round+1);
-        round++;
+    }else{
+        console.log("Final score: You: " + humanScore + " Computer: " + computerScore);
+        if (humanScore>computerScore){
+            console.log("You win the game!");
+        }else if (humanScore===computerScore){
+            console.log("It's a tie!");
+        }else{
+            console.log("Computer won the game!");
+        }
+        console.log("Refresh the browser for NEW GAME!")
     }
+    return;
 }
 
-console.log(playGame(round));
+playGame(round);
