@@ -50,25 +50,6 @@ function playGame(){
     let btns = document.querySelectorAll("button");
     let container = document.querySelector(".display");
 
-    function getWinner(){
-        if (humanScore===5 || computerScore===5){
-            if (humanScore>computerScore){
-                computerScore =0;
-                humanScore=0;
-                result = alert("YOU win the game!\nREFRESH for the NEW GAME")
-                return result;
-            }else{
-                computerScore =0;
-                humanScore=0;
-                result = alert("COMPUTER win the game!\nREFRESH for the NEW GAME")
-                return result;
-                }
-        
-        }else if(humanScore<5 || computerScore<5){
-            return '';
-        }
-    }
-
     btns.forEach (btn=>{
         btn.addEventListener("click",(e) => {
         const humanSelection = e.target.id;
@@ -77,13 +58,22 @@ function playGame(){
         const para = document.createElement("p");
         container.appendChild(para);
 
-        let resultText = `You chose: ${humanSelection.charAt(0).toUpperCase()+humanSelection.slice(1)} 
-                            Computer chose: ${computerSelection.charAt(0).toUpperCase()+computerSelection.slice(1)}<br>`;
-        resultText += `${roundPlay}<br>`;
-        resultText += `Your score: ${humanScore} Computer Score: ${computerScore}<br>`;
-        resultText += getWinner();
+        para.innerHTML = `You chose: ${humanSelection.charAt(0).toUpperCase()+humanSelection.slice(1)} 
+                            Computer chose: ${computerSelection.charAt(0).toUpperCase()+computerSelection.slice(1)}==>`;
+        para.innerHTML += `${roundPlay}<br>`;
+        para.innerHTML += `Your Score: ${humanScore} Computer Score: ${computerScore}<br>`;
 
-        para.innerHTML = resultText;
+        if (humanScore===5 || computerScore===5){
+            if (humanScore>computerScore){
+                para.innerHTML += `You win the game. Congrats!`;
+            }else{
+                para.innerHTML += `Computer win the game.!`;
+                }
+            para.innerHTML += `<br>===============NEW GAME================`;
+            computerScore = 0;
+            humanScore = 0;
+        }    
+
     });
     });
 
