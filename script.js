@@ -42,6 +42,7 @@ function playGame(round){
         }
     }
 
+<<<<<<< HEAD
     const computerSelection = getComputerChoice();
     
     let btns = document.querySelectorAll("button");
@@ -54,6 +55,10 @@ function playGame(round){
         });
     });
 
+=======
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice(); 
+>>>>>>> 9248424c02cc42fce5c405107e075c13fc329807
     
 }
 
