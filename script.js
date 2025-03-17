@@ -42,23 +42,20 @@ function playGame(round){
         }
     }
 
-<<<<<<< HEAD
     const computerSelection = getComputerChoice();
     
     let btns = document.querySelectorAll("button");
+    let container = document.querySelector(".display");
+
     btns.forEach (btn=>{
         btn.addEventListener("click",(e) => {
         const humanSelection = e.target.id;
-        console.log(humanSelection);
-        console.log(computerSelection)
-        console.log(playRound(humanSelection,computerSelection));
+        container.textContent = `You chose ${humanSelection}
+        Computer chose ${computerSelection}`;
+        container.textContent += playRound(humanSelection,computerSelection);
         });
     });
 
-=======
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice(); 
->>>>>>> 9248424c02cc42fce5c405107e075c13fc329807
     
 }
 
