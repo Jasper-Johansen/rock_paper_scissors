@@ -4,6 +4,9 @@ let computerScore=0;
 let round = 1;
 
 function playGame(round){
+    
+    
+
     function getComputerChoice(){
         let number = Math.floor(Math.random()*3)+1;
         let computerChoice;
@@ -23,11 +26,6 @@ function playGame(round){
         return computerChoice;
     }
     
-    function getHumanChoice(){
-        let humanChoice = prompt("Enter your choice: Rock, Paper or Sciccors: ").toLowerCase();
-        return humanChoice;
-    }
-    
     function playRound(humanChoice,computerChoice){
         if (humanChoice===computerChoice){
             return "It's a tie!";
@@ -44,28 +42,19 @@ function playGame(round){
         }
     }
 
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice(); 
-
-    if (round<=5) {
-        console.log("Round: " + round);   
+    const computerSelection = getComputerChoice();
+    
+    let btns = document.querySelectorAll("button");
+    btns.forEach (btn=>{
+        btn.addEventListener("click",(e) => {
+        const humanSelection = e.target.id;
+        console.log(humanSelection);
+        console.log(computerSelection)
         console.log(playRound(humanSelection,computerSelection));
-        console.log("Your score: "+ humanScore);
-        console.log("Computer's score: " + computerScore);
+        });
+    });
 
-        playGame(round+1);
-    }else{
-        console.log("Final score: You: " + humanScore + " Computer: " + computerScore);
-        if (humanScore>computerScore){
-            console.log("You win the game!");
-        }else if (humanScore===computerScore){
-            console.log("It's a tie!");
-        }else{
-            console.log("Computer won the game!");
-        }
-        console.log("Refresh the browser for NEW GAME!")
-    }
-    return;
+    
 }
 
 playGame(round);
