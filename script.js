@@ -33,11 +33,15 @@ function playGame(){
         else{
             if (humanChoice==="rock" && computerChoice==="scissors" || humanChoice==="scissors" && computerChoice==="paper" || humanChoice==="paper" && computerChoice==="rock"){
                 humanScore++;
-                return `You win! ${humanChoice} beats ${computerChoice}`;
+                return `You win! ${humanChoice.charAt(0).toUpperCase()+humanChoice.slice(1)} 
+                        beats ${computerChoice.charAt(0).toUpperCase()+computerChoice.slice(1)}`; 
+                        //First char of humanChoice is converted to Uppercase and
+                        //slice(1) is used to get the rest of the string
             }
             else{
                 computerScore++;
-                return `You lose! ${computerChoice} beats ${humanChoice}`;
+                return `You lose! ${computerChoice.charAt(0).toUpperCase()+computerChoice.slice(1)} 
+                        beats ${humanChoice.charAt(0).toUpperCase()+humanChoice.slice(1)}`; 
             }
         }
     }
@@ -51,11 +55,13 @@ function playGame(){
             if (humanScore>computerScore){
                 computerScore =0;
                 humanScore=0;
-                return "You win the game!";
+                result = alert("YOU win the game!\nREFRESH for the NEW GAME")
+                return result;
             }else{
                 computerScore =0;
                 humanScore=0;
-                return "Computer wins the game!";
+                result = alert("COMPUTER win the game!\nREFRESH for the NEW GAME")
+                return result;
                 }
         
         }else if(humanScore<5 || computerScore<5){
@@ -67,11 +73,17 @@ function playGame(){
         btn.addEventListener("click",(e) => {
         const humanSelection = e.target.id;
         const computerSelection = getComputerChoice();
-        container.textContent = `You chose ${humanSelection}
-        Computer chose ${computerSelection}`;
-        container.textContent += playRound(humanSelection,computerSelection);
-        container.textContent += `Your score: ${humanScore} Computer Score: ${computerScore}`;
-        container.textContent += getWinner();
+        const roundPlay = playRound(humanSelection, computerSelection);
+        const para = document.createElement("p");
+        container.appendChild(para);
+
+        let resultText = `You chose: ${humanSelection.charAt(0).toUpperCase()+humanSelection.slice(1)} 
+                            Computer chose: ${computerSelection.charAt(0).toUpperCase()+computerSelection.slice(1)}<br>`;
+        resultText += `${roundPlay}<br>`;
+        resultText += `Your score: ${humanScore} Computer Score: ${computerScore}<br>`;
+        resultText += getWinner();
+
+        para.innerHTML = resultText;
     });
     });
 
