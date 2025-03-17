@@ -64,20 +64,19 @@ function playGame(){
         para.innerHTML += `Your Score: ${humanScore} Computer Score: ${computerScore}<br>`;
 
         if (humanScore===5 || computerScore===5){
+            para.innerHTML += `============GAME OVER!============<br>`
             if (humanScore>computerScore){
-                para.innerHTML += `You win the game. Congrats!`;
+                para.innerHTML += `You win the game. Congrats!<br>`;
             }else{
-                para.innerHTML += `Computer win the game.!`;
+                para.innerHTML += `Computer win the game.!<br>`;
                 }
-            para.innerHTML += `<br>===============NEW GAME================`;
+            para.innerHTML += `<br><br>==========START NEW GAME=========<br>`
             computerScore = 0;
             humanScore = 0;
         }    
-
     });
     });
 
-    
 }
 
 playGame();
